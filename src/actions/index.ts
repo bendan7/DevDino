@@ -1,21 +1,36 @@
-import { async } from "@firebase/util";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDoc, getDocs, doc, query } from "firebase/firestore";
 import { db } from "../firebase/config";
-import { Collection, getPostsListCallbackFunction, Post } from "./interfaces";
+import { Collection, getPostsDataCallbackFunction, getPostsListCallbackFunction, PostListItem } from "./interfaces";
 
 
-
-
-
-export const getPostsList = async (callback: typeof getPostsListCallbackFunction): Promise<void> =>{
+export async function getPostsList (callback: typeof getPostsListCallbackFunction): Promise<void> {
 
     const postsColRef = collection(db, Collection.POSTS);
     const snapshot = await getDocs(postsColRef);
 
-    const data: Post[] = []
+    const data: PostListItem[] = []
     snapshot.forEach((doc: any) => {
         data.push({...doc.data(), id: doc.id})
     })
 
     if(callback) callback(data);  
 }
+
+
+export async function getPostsData(postId: string, callback: typeof getPostsDataCallbackFunction): Promise<void> {
+
+    const postsColRef = collection(db, Collection.POST_DATA);
+    const snapshot = await getDocs(postsColRef);
+
+    snapshot.forEach((doc: any) => {
+        if( doc.id.trim() ===  postId) {
+            console.log("Document data:", doc.data(),);
+            callback({
+                ...doc.data(), id: doc.id
+            })
+        }
+        
+    })
+     
+}
+

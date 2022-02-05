@@ -1,22 +1,17 @@
-import { ListGroup } from "react-bootstrap";
-import { Post } from "../../actions/interfaces";
+import { PostListItem } from "../../actions/interfaces";
 import PostItem from "./PostItem";
 
 interface Props {
-  posts: Post[];
+  posts: PostListItem[];
 }
 
 function PostList(props: Props) {
   const { posts } = props;
   return (
     <div>
-      <ListGroup>
-        {posts?.map((post: Post) => (
-          <ListGroup.Item key={post.id}>
-            <PostItem {...post} />
-          </ListGroup.Item>
-        ))}
-      </ListGroup>
+      {posts?.map((post: PostListItem) => (
+        <PostItem key={post.id} {...post} />
+      ))}
     </div>
   );
 }

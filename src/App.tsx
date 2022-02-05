@@ -1,22 +1,22 @@
-import React, { useEffect, useState } from "react";
 import logo from "./logo.svg";
 import "./App.css";
-import { getPostsList } from "./actions";
-import { Post } from "./actions/interfaces";
-import PostList from "./components/PostList";
+import { Routes, Route } from "react-router-dom";
+import NewPostPage from "./pages/NewPost";
+import PostsListPage from "./pages/PostsListPage";
+import { RoutesUrls } from "./utils/interfaces";
+import PostPage from "./pages/PostPage";
 
 function App() {
-  const [posts, setPosts] = useState([]);
-
-  // onComponentDidMount
-  useEffect(() => {
-    getPostsList((posts: any) => setPosts(posts));
-  }, []);
-
   return (
     <div className="App">
       <img src={logo} className="App-logo" alt="logo" />
-      <PostList posts={posts} />
+      <Routes>
+        <Route path="/" element={<PostsListPage />} />
+        <Route path={RoutesUrls.CREATE_NEW_POST} element={<NewPostPage />} />
+        <Route path={RoutesUrls.POST} element={<PostPage />}>
+          <Route path=":postId" element={<PostPage />} />
+        </Route>
+      </Routes>
     </div>
   );
 }
