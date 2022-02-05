@@ -1,0 +1,22 @@
+.postItem {
+  background-color: #395b64;
+  min-width: 960px;
+  min-height: 40px;
+  border-radius: 10px;
+  font-size: 20px;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.author {
+  font-size: 15px;
+  text-align: left;
+}
+
+.postInfo {
+  display: flex;
+  justify-content: space-between;
+  min-width: 30%;
+}
