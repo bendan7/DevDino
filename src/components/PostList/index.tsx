@@ -1,17 +1,13 @@
-import React, { useEffect, useState } from "react";
 import { ListGroup } from "react-bootstrap";
-import { getPostsList } from "../../actions";
 import { Post } from "../../actions/interfaces";
 import PostItem from "./PostItem";
 
-function PostList() {
-  const [posts, setPosts] = useState([]);
+interface Props {
+  posts: Post[];
+}
 
-  // onComponentDidMount
-  useEffect(() => {
-    getPostsList((posts: any) => setPosts(posts));
-  }, []);
-
+function PostList(props: Props) {
+  const { posts } = props;
   return (
     <div>
       <ListGroup>
