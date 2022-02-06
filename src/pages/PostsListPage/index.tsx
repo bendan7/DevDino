@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
-import { Button, Row } from "react-bootstrap";
+import { Button, Row, Spinner } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { getPostsList } from "../../actions";
 import PostList from "../../components/PostList";
 import { RoutesUrls } from "../../utils/interfaces";
 
 export default function PostsListPage() {
-  const [posts, setPosts] = useState([]);
+  const [posts, setPosts] = useState();
 
   // onComponentDidMount
   useEffect(() => {
@@ -21,7 +21,11 @@ export default function PostsListPage() {
         </Link>
       </Row>
 
-      <PostList posts={posts} />
+      {posts ? (
+        <PostList posts={posts} />
+      ) : (
+        <Spinner className="mt-5" animation="border" variant="secondary" />
+      )}
     </>
   );
 }
