@@ -9,19 +9,25 @@
   justify-content: space-between;
   align-items: center;
   overflow: hidden;
+
+  .author {
+    font-size: 15px;
+    text-align: left;
+  }
+
+  .postInfo {
+    display: flex;
+    justify-content: space-between;
+    min-width: 30%;
+  }
+  
+  a {
+    color: aliceblue !important;
+  }
+  
 }
 
-.author {
-  font-size: 15px;
-  text-align: left;
-}
 
-.postInfo {
-  display: flex;
-  justify-content: space-between;
-  min-width: 30%;
-}
 
-a {
-  color: aliceblue !important;
-}
+
+

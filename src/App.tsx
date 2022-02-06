@@ -1,5 +1,5 @@
 import logo from "./logo.svg";
-import "./App.css";
+import "./App.scss";
 import { Routes, Route } from "react-router-dom";
 import NewPostPage from "./pages/NewPost";
 import PostsListPage from "./pages/PostsListPage";

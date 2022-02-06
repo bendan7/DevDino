@@ -16,6 +16,8 @@ export default function PostPage() {
   // onComponentDidMount
   useEffect(() => {
     postId && getPostsData(postId, (post) => setPost(post));
+    
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

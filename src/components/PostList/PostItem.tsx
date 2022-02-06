@@ -1,10 +1,8 @@
-import { Timestamp } from "firebase/firestore";
-import React from "react";
 import { Link } from "react-router-dom";
 import { PostListItem } from "../../actions/interfaces";
 import { formatDateTime } from "../../utils/formatter";
 import { RoutesUrls } from "../../utils/interfaces";
-import "./style.css";
+import "./style.scss";
 
 function PostItem(post: PostListItem) {
   return (

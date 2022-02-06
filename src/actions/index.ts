@@ -1,4 +1,4 @@
-import { collection, getDoc, getDocs, doc, query } from "firebase/firestore";
+import { collection, getDocs} from "firebase/firestore";
 import { db } from "../firebase/config";
 import { Collection, getPostsDataCallbackFunction, getPostsListCallbackFunction, PostListItem } from "./interfaces";
 
