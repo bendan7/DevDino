@@ -13,7 +13,7 @@
  */
 
  .RichEditor-root {
-    background: #fff;
+    background: rgb(77, 77, 77);
     border: 1px solid #ddd;
     font-family: 'Georgia', serif;
     font-size: 14px;
