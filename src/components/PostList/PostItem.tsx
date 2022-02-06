@@ -13,6 +13,7 @@ function PostItem(post: PostListItem) {
           <div>{post.title}</div>
         </Link>
         <div className="author">author: {post.createBy}</div>
+        <div className="author">{formatDateTime(post?.createAt)}</div>
       </div>
       <div className="postInfo">
         <Col>
@@ -20,7 +21,7 @@ function PostItem(post: PostListItem) {
           <div>
             {post.lastCommentBy && `last comment by: ${post.lastCommentBy}`}
           </div>
-          <div>{`${formatDateTime(post?.lastCommentAt)}`}</div>
+          <div>{formatDateTime(post?.lastCommentAt)}</div>
         </Col>
       </div>
     </div>

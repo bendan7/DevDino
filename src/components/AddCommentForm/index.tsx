@@ -32,6 +32,7 @@ export default function AddCommentForm(props: Props) {
     setCreateBy("");
     setBody("");
     setIsLoading(true);
+
     props.onSubmit(commentData, () => setIsLoading(false));
   }
 

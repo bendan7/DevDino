@@ -15,7 +15,7 @@ export default function PostsListPage() {
 
   return (
     <>
-      <Row className="w-100">
+      <Row className="post-list-page w-100">
         <Link to={`${RoutesUrls.CREATE_NEW_POST}`}>
           <Button variant="outline-secondary">New Post</Button>
         </Link>

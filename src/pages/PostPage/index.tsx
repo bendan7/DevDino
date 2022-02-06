@@ -5,7 +5,7 @@ import { PostData, CommentData } from "../../actions/interfaces";
 import { formatDateTime } from "../../utils/formatter";
 import "./style.scss";
 import Comment from "../../components/Comment";
-import { Button } from "react-bootstrap";
+import { Button, Spinner } from "react-bootstrap";
 import { RoutesUrls } from "../../utils/interfaces";
 import AddCommentForm from "../../components/AddCommentForm";
 
@@ -61,6 +61,6 @@ export default function PostPage() {
       </div>
     </div>
   ) : (
-    <h3>Loading...</h3>
+    <Spinner animation="border" variant="secondary" />
   );
 }

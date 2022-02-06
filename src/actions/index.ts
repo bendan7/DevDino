@@ -19,15 +19,15 @@ import {
   PostListItem,
 } from "./interfaces";
 
-const postsCollectionRef = collection(firestore, Collection.POSTS);
+const postsListCollectionRef = collection(firestore, Collection.POSTS_LIST);
 const postsDataCollectionRef = collection(firestore, Collection.POST_DATA);
 
 // prettier-ignore
 export async function getPostsList(callback: typeof getPostsListCallbackFunction): Promise<void> {
 
-    const snapshot = await getDocs(postsCollectionRef);
-
+    const snapshot = await getDocs(postsListCollectionRef);
     const data: PostListItem[] = []
+
     snapshot.forEach((doc: any) => {
         data.push({...doc.data(), id: doc.id})
     })
@@ -38,11 +38,11 @@ export async function getPostsList(callback: typeof getPostsListCallbackFunction
 // prettier-ignore
 export async function getPostsData(postId: string, callback: typeof getPostsDataCallbackFunction): Promise<void> {
     
-    const docRef = doc(firestore, `${Collection.POST_DATA}/${postId.trim()}`)
-    const snapShot = await getDoc(docRef)
+    const docRef = doc(firestore, Collection.POST_DATA, postId)
+    const docSnapShot = await getDoc(docRef)
 
-    if(snapShot.exists()){
-        const data: any = snapShot.data();
+    if(docSnapShot.exists()){
+        const data: any = docSnapShot.data();
         callback({
             ...data, id: postId
         })
@@ -57,7 +57,7 @@ export async function addNewPost(postData: PostData, callback: Function): Promis
         // Adding new post to PostData collection
         const newDoc = await addDoc(postsDataCollectionRef, postData)
 
-        // Adding new post info to post collection
+        // Adding new post info to post List collection
         const post: PostListItem = {
             createBy: postData.createBy,
             createAt: postData.createAt,
@@ -66,7 +66,7 @@ export async function addNewPost(postData: PostData, callback: Function): Promis
             lastCommentBy: null,
             lastCommentAt: null
         }
-        const docRef = doc(firestore, `${Collection.POSTS}/${newDoc.id}`)
+        const docRef = doc(firestore, Collection.POSTS_LIST, newDoc.id)
         await setDoc(docRef, post);
     }
     catch(e: any){
@@ -74,7 +74,6 @@ export async function addNewPost(postData: PostData, callback: Function): Promis
     }
 
     if(callback) callback();
-
 }
 
 // prettier-ignore
@@ -87,19 +86,16 @@ export async function addNewComment(postId: string, values: NewCommentValues, ca
       comments: arrayUnion(values)
     });
 
-    // Updating last comment info in posts collection
-    const postRef = doc(firestore, Collection.POSTS, postId);
+    // Updating last comment info in PostList collection
+    const postRef = doc(firestore, Collection.POSTS_LIST, postId);
     const snapShot = await getDoc(postRef)
     if(snapShot.exists()){
       const data = snapShot.data();
-      console.log({lastCommentAt: Timestamp.now(), lastCommentBy: values.createBy, commentsCount: data.commentsCount + 1 })
       await updateDoc(postRef, {lastCommentAt: Timestamp.now(), lastCommentBy: values.createBy, commentsCount: data.commentsCount + 1 });
-  }
-
+    }
     
-
   } catch (e: any) {
-    console.log(e)
+    return;
   }
 
   if (callback) callback();

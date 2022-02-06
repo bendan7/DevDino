@@ -1,6 +1,6 @@
 import "./App.scss";
 import { Routes, Route } from "react-router-dom";
-import NewPostPage from "./pages/NewPost";
+import NewPostPage from "./pages/NewPostPage";
 import PostsListPage from "./pages/PostsListPage";
 import { RoutesUrls } from "./utils/interfaces";
 import PostPage from "./pages/PostPage";
