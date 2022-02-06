@@ -2,15 +2,21 @@ import React from "react";
 import { Editor, EditorState, RichUtils, getDefaultKeyBinding } from "draft-js";
 import "../../../node_modules/draft-js/dist/Draft.css";
 import "./RichEditor.css";
+import { stateToHTML } from "draft-js-export-html";
 
 export default class RichEditorExample extends React.Component {
   constructor(props) {
     super(props);
     this.state = { editorState: EditorState.createEmpty() };
+    const onContentChange = this.props?.onChange;
 
     this.focus = () => this.refs.editor.focus();
     this.onChange = (editorState) => {
-      console.log(editorState);
+      if (onContentChange) {
+        const htmlContent = stateToHTML(editorState.getCurrentContent());
+        onContentChange(htmlContent);
+      }
+
       this.setState({ editorState });
     };
 

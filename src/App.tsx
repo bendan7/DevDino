@@ -9,7 +9,6 @@ import PostPage from "./pages/PostPage";
 function App() {
   return (
     <div className="App">
-      <img src={logo} className="App-logo" alt="logo" />
       <Routes>
         <Route path="/" element={<PostsListPage />} />
         <Route path={RoutesUrls.CREATE_NEW_POST} element={<NewPostPage />} />
