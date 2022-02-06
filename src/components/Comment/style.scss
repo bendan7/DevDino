@@ -1,0 +1,12 @@
+@import "../../utils/colors.scss";
+.comment {
+  background-color: $gray;
+  border-radius: 30px;
+  padding: 20px;
+  margin-top: 15px;
+
+  .comment-info {
+    font-size: 16px;
+    margin-bottom: 25px;
+  }
+}

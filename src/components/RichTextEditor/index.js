@@ -1,10 +1,10 @@
 import React from "react";
 import { Editor, EditorState, RichUtils, getDefaultKeyBinding } from "draft-js";
 import "../../../node_modules/draft-js/dist/Draft.css";
-import "./RichEditor.css";
+import "./RichEditor.scss";
 import { stateToHTML } from "draft-js-export-html";
 
-export default class RichEditorExample extends React.Component {
+export default class RichEditor extends React.Component {
   constructor(props) {
     super(props);
     this.state = { editorState: EditorState.createEmpty() };

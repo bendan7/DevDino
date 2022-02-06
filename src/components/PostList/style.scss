@@ -1,5 +1,7 @@
+@import "../../utils/colors.scss";
+
 .postItem {
-  background-color: #395b64;
+  background-color: $gray;
   min-width: 960px;
   min-height: 40px;
   border-radius: 10px;
@@ -20,14 +22,8 @@
     justify-content: space-between;
     min-width: 30%;
   }
-  
+
   a {
     color: aliceblue !important;
   }
-  
 }
-
-
-
-
-

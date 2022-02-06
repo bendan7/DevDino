@@ -15,7 +15,7 @@ function PostItem(post: PostListItem) {
       </div>
       <div className="postInfo">
         <div>{post.lastCommentBy}</div>
-        <div>{`Last comment: ${formatDateTime(post.lastCommentAt)}`}</div>
+        <div>{`Last comment: ${formatDateTime(post?.lastCommentAt)}`}</div>
       </div>
     </div>
   );
