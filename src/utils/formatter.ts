@@ -4,6 +4,6 @@ export function formatDateTime(ts?: Timestamp | null): string {
   const date = ts?.toDate();
 
   return date
-    ? `${date.getDay()}.${date.getMonth()}.${date.getFullYear()} - ${date.getHours()}:${date.getMinutes()}`
+    ? `${date.getDate()}.${date.getMonth()}.${date.getFullYear()} - ${date.getHours()}:${date.getMinutes()}`
     : "";
 }

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Button } from "react-bootstrap";
+import { Button, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { getPostsList } from "../../actions";
 import PostList from "../../components/PostList";
@@ -15,11 +15,11 @@ export default function PostsListPage() {
 
   return (
     <>
-    <Link to={`${RoutesUrls.CREATE_NEW_POST}`}>
-      <Button>
-          New Post
-        </Button>
-    </Link>
+      <Row className="w-100">
+        <Link to={`${RoutesUrls.CREATE_NEW_POST}`}>
+          <Button variant="outline-secondary">New Post</Button>
+        </Link>
+      </Row>
 
       <PostList posts={posts} />
     </>

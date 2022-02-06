@@ -26,7 +26,7 @@ export default function PostPage() {
   }, []);
 
   function onNewCommentCreated() {
-    postId && getPostsData(postId, (post) => setPost(post));
+    getPostsData(postId, (post) => setPost(post));
   }
 
   return post ? (
@@ -51,10 +51,12 @@ export default function PostPage() {
       <div className="comment-form">
         <h3>Add Comment</h3>
         <AddCommentForm
-          onSubmit={(values) => {
-            console.log(values);
-            addNewComment(postId, values, onNewCommentCreated);
-          }}
+          onSubmit={(values, onSuccses) =>
+            addNewComment(postId, values, () => {
+              onNewCommentCreated();
+              onSuccses();
+            })
+          }
         />
       </div>
     </div>

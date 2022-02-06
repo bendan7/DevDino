@@ -14,6 +14,7 @@ import {
   Collection,
   getPostsDataCallbackFunction,
   getPostsListCallbackFunction,
+  NewCommentValues,
   PostData,
   PostListItem,
 } from "./interfaces";
@@ -75,8 +76,9 @@ export async function addNewPost(postData: PostData, callback: Function): Promis
     if(callback) callback();
 
 }
+
 // prettier-ignore
-export async function addNewComment(postId: string, values: any, callback?: Function): Promise<void> {
+export async function addNewComment(postId: string, values: NewCommentValues, callback?: Function): Promise<void> {
   try {
 
     // Adding new comment to PostData collection

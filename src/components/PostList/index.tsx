@@ -8,7 +8,7 @@ interface Props {
 function PostList(props: Props) {
   const { posts } = props;
   return (
-    <div>
+    <div className="post-list">
       {posts?.map((post: PostListItem) => (
         <PostItem key={post.id} {...post} />
       ))}

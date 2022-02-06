@@ -16,7 +16,7 @@ function PostItem(post: PostListItem) {
       </div>
       <div className="postInfo">
         <Col>
-          <div>Number of comments: {post.commentsCount}</div>
+          <div>comments count: {post.commentsCount}</div>
           <div>
             {post.lastCommentBy && `last comment by: ${post.lastCommentBy}`}
           </div>
