@@ -1,3 +1,4 @@
+import { Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { PostListItem } from "../../actions/interfaces";
 import { formatDateTime } from "../../utils/formatter";
@@ -10,12 +11,17 @@ function PostItem(post: PostListItem) {
       <div className="title">
         <Link to={`${RoutesUrls.POST}/${post.id}`}>
           <div>{post.title}</div>
-          <div className="author">{post.createBy}</div>
         </Link>
+        <div className="author">author: {post.createBy}</div>
       </div>
       <div className="postInfo">
-        <div>{post.lastCommentBy}</div>
-        <div>{`Last comment: ${formatDateTime(post?.lastCommentAt)}`}</div>
+        <Col>
+          <div>Number of comments: {post.commentsCount}</div>
+          <div>
+            {post.lastCommentBy && `last comment by: ${post.lastCommentBy}`}
+          </div>
+          <div>{`${formatDateTime(post?.lastCommentAt)}`}</div>
+        </Col>
       </div>
     </div>
   );

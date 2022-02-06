@@ -6,7 +6,7 @@ export default function Comment(comment: CommentData) {
   return (
     <div className="comment">
       <div className="comment-info">
-        {comment.createBy} - {formatDateTime(comment.createAt)}
+        By {comment.createBy} - {formatDateTime(comment.createAt)}
       </div>
       {comment.body}
     </div>

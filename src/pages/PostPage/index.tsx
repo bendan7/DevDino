@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { getPostsData } from "../../actions";
+import { addNewComment, getPostsData } from "../../actions";
 import { PostData, CommentData } from "../../actions/interfaces";
 import { formatDateTime } from "../../utils/formatter";
 import "./style.scss";
 import Comment from "../../components/Comment";
 import { Button } from "react-bootstrap";
 import { RoutesUrls } from "../../utils/interfaces";
-import RichEditor from "../../components/RichTextEditor";
+import AddCommentForm from "../../components/AddCommentForm";
 
 interface urlParms {
   postId?: string;
@@ -15,7 +15,7 @@ interface urlParms {
 
 export default function PostPage() {
   const params: urlParms = useParams();
-  const postId = params?.postId;
+  const postId = params?.postId || "";
   const [post, setPost] = useState<PostData>();
 
   // onComponentDidMount
@@ -25,6 +25,10 @@ export default function PostPage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  function onNewCommentCreated() {
+    postId && getPostsData(postId, (post) => setPost(post));
+  }
+
   return post ? (
     <div className="post-page">
       <Link to={`${RoutesUrls.HOME}`}>
@@ -33,7 +37,7 @@ export default function PostPage() {
 
       <h1 className="title">{post?.title}</h1>
       <div>
-        {post?.createBy} - {formatDateTime(post?.createAt)}
+        By {post?.createBy} - {formatDateTime(post?.createAt)}
       </div>
       <div
         className="post-body"
@@ -44,8 +48,14 @@ export default function PostPage() {
           <Comment key={`${post.id}_${index}`} {...comment} />
         ))}
       </div>
-      <div className="text-editor">
-        <RichEditor onChange={() => {}} />
+      <div className="comment-form">
+        <h3>Add Comment</h3>
+        <AddCommentForm
+          onSubmit={(values) => {
+            console.log(values);
+            addNewComment(postId, values, onNewCommentCreated);
+          }}
+        />
       </div>
     </div>
   ) : (
