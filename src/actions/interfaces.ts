@@ -33,9 +33,3 @@ export interface CommentData {
   createAt: Timestamp;
   body: string;
 }
-
-export interface NewCommentValues {
-  body: string;
-  createBy: string;
-  createAt: Timestamp;
-}

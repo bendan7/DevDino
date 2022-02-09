@@ -14,7 +14,7 @@ import {
   Collection,
   getPostsDataCallbackFunction,
   getPostsListCallbackFunction,
-  NewCommentValues,
+  CommentData,
   PostData,
   PostListItem,
 } from "./interfaces";
@@ -70,6 +70,7 @@ export async function addNewPost(postData: PostData, callback: Function): Promis
         await setDoc(docRef, post);
     }
     catch(e: any){
+        console.error(e);
         return;
     }
 
@@ -77,7 +78,7 @@ export async function addNewPost(postData: PostData, callback: Function): Promis
 }
 
 // prettier-ignore
-export async function addNewComment(postId: string, values: NewCommentValues, callback?: Function): Promise<void> {
+export async function addNewComment(postId: string, values: CommentData, callback?: Function): Promise<void> {
   try {
 
     // Adding new comment to PostData collection
@@ -95,6 +96,7 @@ export async function addNewComment(postId: string, values: NewCommentValues, ca
     }
     
   } catch (e: any) {
+    console.error(e);
     return;
   }
 

@@ -1,11 +1,11 @@
 import { Timestamp } from "firebase/firestore";
 import { useState } from "react";
 import { Form, Button, Spinner, Alert } from "react-bootstrap";
-import { NewCommentValues } from "../../actions/interfaces";
+import { CommentData } from "../../actions/interfaces";
 import "./style.scss";
 
 interface Props {
-  onSubmit: (values: NewCommentValues, onSuccses: Function) => void;
+  onSubmit: (values: CommentData, onSuccses: Function) => void;
 }
 
 export default function AddCommentForm(props: Props) {
@@ -23,7 +23,7 @@ export default function AddCommentForm(props: Props) {
     }
     setError("");
 
-    const commentData: NewCommentValues = {
+    const commentData: CommentData = {
       createBy,
       body,
       createAt: Timestamp.now(),
